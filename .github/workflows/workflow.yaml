@@ -54,4 +54,4 @@ jobs:
             --image=docker.io/${{ env.IMAGE }} \
             --region=${{ secrets.REGION }} \
             --project=${{ secrets.PROJECT_ID }} \
-            && gcloud run services update-traffic ${{ env.SERVICE_NAME }} --to-latest
+            && gcloud run services update-traffic ${{ env.SERVICE_NAME }} --to-latest --region=${{ secrets.REGION }}
