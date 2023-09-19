@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
 
 env:
-  SERVICE_NAME: serverless-nasa-test
+  TEST_SERVICE_NAME: serverless-nasa-test
+  SERVICE_NAME: serverless-nasa
 
 jobs:
   setup:
@@ -19,6 +20,25 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
           export_default_credentials: true
+
+      - name: Deploy Test on Cloud RUN
+        run: |
+          gcloud run deploy ${{ env.TEST_SERVICE_NAME }} \
+            --image=docker.io/${{ secrets.DOCKER_USERNAME }}/serverless-nasa:v1 \
+            --allow-unauthenticated \
+            --service-account=${{ secrets.SERVICE_ACCOUNT }} \
+            --max-instances=10 \
+            --set-secrets=API_KEY=API_KEY:1 \
+            --cpu-boost \
+            --region=${{ secrets.REGION }} \
+            --project=${{ secrets.PROJECT_ID }} \
+
+          gcloud components install beta --quiet
+
+          gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} \
+            --region=${{ secrets.REGION }} \
+            --member=allUsers \
+            --role=roles/run.invoker \
 
       - name: Deploy App on Cloud RUN
         run: |
