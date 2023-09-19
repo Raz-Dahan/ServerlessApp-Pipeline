@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  SERVICE_NAME: serverles-nasa
+  SERVICE_NAME: serverless-nasa
   IMAGE: ${{ secrets.DOCKER_USERNAME }}/serverles-nasa:v${{github.run_number}}
 
 jobs:
