@@ -9,8 +9,7 @@ env:
   SERVICE_NAME: serverless-nasa-test
 
 jobs:
-  deploy:
-    needs: build
+  setup:
     runs-on: ubuntu-latest
 
     steps:
