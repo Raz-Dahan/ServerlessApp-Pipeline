@@ -31,8 +31,7 @@ jobs:
             --cpu-boost \
             --region=${{ secrets.REGION }} \
             --project=${{ secrets.PROJECT_ID }}
-          gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} \
+          gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} --quiet \
             --region=${{ secrets.REGION }} \
             --member=allUsers \
             --role=roles/run.invoker \
-            --quiet
