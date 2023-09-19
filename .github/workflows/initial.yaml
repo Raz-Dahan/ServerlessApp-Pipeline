@@ -1,8 +1,5 @@
 name: Setup
 on:
-  push:
-    branches:
-      - dev
   workflow_dispatch:
 
 env:
@@ -37,4 +34,5 @@ jobs:
           gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} \
             --region=${{ secrets.REGION }} \
             --member=allUsers \
-            --role=roles/run.invoker
+            --role=roles/run.invoker \
+            --quiet
