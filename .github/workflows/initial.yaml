@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  SERVICE_NAME: serverless-nasa
+  SERVICE_NAME: serverless-nasa-test
 
 jobs:
   deploy:
