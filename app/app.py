@@ -19,7 +19,7 @@ def index():
         return render_template('index.html', today_image_url=today_data['url'],today_describe_url=today_data['title'], logo_url=logo_url, icon_url=icon_url) 
 
 def get_nasa_image(date):
-    secret_key = os.getenv('API_KEY')
+    secret_key = os.getenv('API_KE')
     url = f'https://api.nasa.gov/planetary/apod?api_key={secret_key}&date={date}'
     response = requests.get(url)
     if response.status_code == 200:
