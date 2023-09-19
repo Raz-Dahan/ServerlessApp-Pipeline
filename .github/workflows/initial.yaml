@@ -30,8 +30,11 @@ jobs:
             --set-secrets=API_KEY=API_KEY:1 \
             --cpu-boost \
             --region=${{ secrets.REGION }} \
-            --project=${{ secrets.PROJECT_ID }}
-          gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} --quiet \
+            --project=${{ secrets.PROJECT_ID }} \
+            --quiet
+
+          gcloud beta run services add-iam-policy-binding ${{ env.SERVICE_NAME }} \
             --region=${{ secrets.REGION }} \
             --member=allUsers \
             --role=roles/run.invoker \
+            --quiet
