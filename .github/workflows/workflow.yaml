@@ -7,7 +7,7 @@ on:
 
 env:
   SERVICE_NAME: serverless-nasa
-  IMAGE: ${{ secrets.DOCKER_USERNAME }}/serverles-nasa:v${{github.run_number}}
+  IMAGE: ${{ secrets.DOCKER_USERNAME }}/serverless-nasa:v${{github.run_number}}
 
 jobs:
   build:
